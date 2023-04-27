@@ -20,6 +20,18 @@
     }
   ).addTo(map);
 
+    //add AJAX request for geoJSON to map
+
+$.ajax({
+  url: 'data/charlotte_tracts.geojson',
+  dataType: 'json',
+  success: function (response) {
+      geojsonLayer = L.geoJson(response).addTo(map);
+      map.fitBounds(geojsonLayer.getBounds());
+  }
+});
+
+
   // Read data from CSV file
   $.get('./data/charlotte_pears_short_latlon.csv', function (csvString) {
 
@@ -43,6 +55,12 @@
     heat.addTo(map)
   })
 
+
+
+
+
+
+
   /*   omnivore
     .csv("data/charlotte_pears_short_latlon.csv")
     .on("ready", function (e) {
@@ -53,20 +71,17 @@
     });
   }).addTo(map);
 
-  var heat=L.heatLayer(data, {
-    radius:25,
-    blur:15,
+  
 
   }) */
 
-  window.addEventListener("resize", adjustHeight);
+ /*  window.addEventListener("resize", adjustHeight);
 
   const button = document.querySelector("#legend button")
   button.addEventListener('click', function () {
     const legend = document.querySelector(".leaflet-legend")
     legend.classList.toggle('show-legend')
   })
-
 
 
   function adjustHeight() {
@@ -83,11 +98,11 @@
       contentSize.style.height = `${resize * 0.25}px`;
       mapSize.style.height = `${resize * 0.75}px`;
     }
-
+ */
     //mapSize.style.height = `${resize}px`;
   } //end adjust height
 
 
 
 
-})();
+)();
