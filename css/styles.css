@@ -1,0 +1,147 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8rem;
+  font-weight: 300;
+  color: #262626;
+}
+
+h1 {
+  /*  color: #d96d02; */
+  color: #262626;
+  font-weight: 500;
+  font-size: 2.5rem;
+}
+
+h2 {
+  color: #262626;
+  font-weight: 500;
+  font-size: 2rem;
+  /* text-align: center;
+  vertical-align: middle;
+  align-items: center; */
+}
+
+h3 {
+  color: #262626;
+  font-weight: 00;
+  font-size: 1rem;
+  /* text-align: center; */
+  vertical-align: middle;
+  align-items: center;
+}
+
+a {
+  color: #262626;
+  ;
+}
+
+a:hover {
+  color: #8B8078;
+}
+
+#map {
+  height: 100vh;
+  border-top: 2px solid #d96d02;
+  background-color: rgb(220, 220, 220);
+}
+
+#info {
+  z-index: 1000;
+  display: none;
+  width: 260px;
+  position: absolute;
+  /*  top: 10px;
+  right: 10px; */
+}
+
+#grade {
+  height: 4vh;
+  z-index: 1000;
+  width: 100px;
+  position: absolute;
+  bottom: 70px;
+  left: 0px;
+  align-items: center;
+}
+
+
+.grade {
+  text-align: center;
+
+}
+
+.leaflet-legend {
+  width: 240px;
+  height: 180px;
+  background-color: whitesmoke;
+  /* Legend is not shown on small screens. */
+  display: none;
+}
+
+/* Rule to toggle on/off legend. */
+.show-legend {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.boys {
+  color: #6e77b0;
+  font-weight: 525;
+  /* background-color: #6e77b0; */
+}
+
+.girls {
+  color: #d96d02;
+  font-weight: 525;
+  /* background-color: #d96d02; */
+}
+
+/* .girls,
+.boys, */
+.trend {
+  /* color: #fff; */
+  font-weight: 300;
+  padding: 0 4px 0 4px;
+}
+
+.legend-large,
+.legend-small {
+  border-radius: 50%;
+  border: 1px solid #000;
+
+}
+
+.leaflet-container {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.4rem;
+  font-weight: 300;
+}
+
+hr.small,
+hr.large {
+  width: 83px;
+  position: absolute;
+  top: -8px;
+  left: 55px;
+  border: 1px dashed #ccc;
+  margin-top: 8px;
+}
+
+
+
+/* When screen is 768px and wider. */
+@media screen and (min-width: 768px) {
+  #map {
+    border-top: none;
+  }
+
+  .leaflet-legend {
+    display: block;
+  }
+
+  #legend button {
+    display: none;
+  }
+}
