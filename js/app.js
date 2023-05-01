@@ -34,12 +34,11 @@
     PCT_WHITE_2010: ["Percent white in 2010"],
   };
 
-  const units = {
-    PCT_WHITE_1990: "%",
-    rents_RENTER_OCC: "%",
-    rents_GRAPI_35PLUS: "%"
-  }
+/*  var mapLayers = {
+  "heatmap": heatmap,
+ } 
 
+ L.control.layers(null, mapLayers, { collapsed:false }).addTo(map); */
 
   //add charlotte data
   fetch("data/charlotte_tracts.geojson")
@@ -73,21 +72,10 @@
 
     console.log(tracts);
 
-    /*  const tractsUpdate = [];
-
-     //attempt to update counties
-     tracts.features.forEach(function (tract) {
-
-       // push that attribute value into the array
-       tractsUpdate.push(tract);
-     });
-     console.log("tracts update", tractsUpdate) */
-
 
     // empty array to store all the data values
     const values = [];
 
-    ///THIS IS WHERE IM STUCK 
 
     // iterate through all the TRACTS
     tracts.features.forEach(function (tract) {
@@ -131,15 +119,12 @@
           fillOpacity: 0,
           // This property allows us control interactivity of layer
           interactive: false,
-          zIndex: 400,
+          //zIndex: 400,
         };
       },
 
     }).addTo(map);
   }
-
-
-
 
 
   function drawMap(tracts, colorize) {
@@ -149,9 +134,9 @@
         return {
           color: "#eeeeee",
           weight: .2,
-          fillOpacity: .5,
+          fillOpacity: .4,
           fillColor: "#1f78b4",
-          zIndex: 1000,
+          //zIndex: 1000,
         };
       },
       // add hover/touch functionality to each feature layer
@@ -181,8 +166,6 @@
     updateMap(dataLayer, colorize, "PCT_WHITE_1990");
 
   } // end drawMap()
-
-
 
 
 
@@ -301,24 +284,6 @@ slider.addEventListener("input", function (e) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // Add legend to map
   function addLegend(breaks) {
     // check your console to verify the breaks array
@@ -364,10 +329,18 @@ slider.addEventListener("input", function (e) {
       ${(breaks[i][1]).toFixed(1)}${units[attributeValue]}</label>
   </div>`;
     }
-  }
+  } //end updateLegend
+
+
+
+ /*  var layerControl = L.control.layers(null, {
+    collaped: false, position: 'bottomright'
+  }).addTo(map);
+
+var heat = "(...)" */
 
      //create heatmap
-    $.get('./data/charlotte_pears_short_latlon.csv', function (csvString) {
+$.get('./data/charlotte_pears_short_latlon.csv', function (csvString) {
 
       // Use PapaParse to transform file into arrays
       var data = Papa.parse(csvString.trim()).data.filter(
@@ -388,9 +361,17 @@ slider.addEventListener("input", function (e) {
 
       // Add the heatlayer to the map
       heat.addTo(map);
-    }) 
+      //layerControl.addOverlay(heat,"pear density");
+
+    });//end getCSV
 
 
+   
+
+  /*   var sourcesLayers = {
+      "<b style='color: red '> Heat Map</b>": heat,
+    }    */
+  
 
 
 
