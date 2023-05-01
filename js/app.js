@@ -49,6 +49,7 @@
     });
 
 
+
   function drawMap(data) {
     // create Leaflet data layer and add to map
     const tracts = L.geoJson(data, {
@@ -57,7 +58,7 @@
         return {
           color: "#262626",
           weight: .5,
-          fillOpacity: .8,
+          fillOpacity: .5,
           fillColor: "#1f78b4",
         };
       },
@@ -81,7 +82,7 @@
           });
         });
       },
-    }).addTo(map);
+    }).addTo(map).bringToFront();
 
     // fit the map's bounds and zoom level using the counties extent
     /*    map.fitBounds(counties.getBounds(), {
@@ -199,6 +200,29 @@ function updateLegend(breaks) {
   </div>`;
   }
 }
+
+//create heatmap
+$.get('./data/charlotte_pears_short_latlon.csv', function (csvString) {
+
+  // Use PapaParse to transform file into arrays
+  var data = Papa.parse(csvString.trim()).data.filter(
+    function (row) {
+      return row.length === 2
+    }
+  ).map(function (a) {
+    return [parseFloat(a[0]), parseFloat(a[1])]
+  })
+
+  //the above code that uses Jquery and papaParse was modified and borrowed from a leaflet heatmap tutorial after several failed attempts using this and other heatmap API's https://github.com/HandsOnDataViz/leaflet-heatmap
+
+  // Add all points into a heat layer
+  var heat = L.heatLayer(data, {
+    radius: 25
+  })
+
+  // Add the heatlayer to the map
+  heat.addTo(map);
+})
 
 
 
