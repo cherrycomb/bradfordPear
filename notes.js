@@ -1,4 +1,44 @@
 
+
+///values/rates into an array
+
+
+     // iterate through all the counties
+     tracts.features.forEach(function (tract) {
+      // iterate through all the props of each county
+      for (const prop in tract.properties) {
+        console.log(prop);
+
+  if (tract.properties === "PCT_WHITE_1009") {
+   console.log(county.properties)
+
+          /*  if (county.properties[prop] == 71) {
+             console.log(county.properties)
+           } */
+          // push that attribute value into the array
+          rates.push(Number(tract.properties.attributeValue[prop]));
+        
+
+      }
+     }
+      console.log("LOOK HERE!!!", rates)
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //HEATMAP FROM CSV DATA BELOW
 
 
