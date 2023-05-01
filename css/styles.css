@@ -52,8 +52,8 @@ a:hover {
   font-family: Lato, sans-serif;
   padding: 6px 8px;
   font-size: 1em;
-  background: rgba(75, 75, 75, 0.8);
-  color: whitesmoke;
+  background: rgba(231, 218, 194, 0.8);
+  color: #262626;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   width: 160px;
@@ -63,7 +63,7 @@ a:hover {
   font-size: 1.1em;
   font-weight: bold;
   line-height: 1em;
-  color: whitesmoke;
+  color: #262626;
   margin: 0;
 }
 

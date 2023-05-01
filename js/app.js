@@ -6,7 +6,11 @@
     zoom: 11,
     minZoom: 8,
     center: [35.22, -80.84],
+    zoomControl: false,
   });
+  L.control.zoom({
+    position: 'topright'
+}).addTo(map);
 
   // mapbox API access Token
   var accessToken = "pk.eyJ1IjoicmwtbWFydGVucyIsImEiOiJjbDQzNTY0d2YwNG5iM2N1aHYxcGJ1djcwIn0.tAxFsgNvT-dK0JF1vextnQ";
@@ -49,6 +53,20 @@
       processData(tracts)
       //drawMap(data);
     });
+    fetch("data/council_district_outline.geojson")
+
+          .then(function (response) {
+            return response.json()
+          })
+          .then(function (data) {
+            drawAnotherLayer(data)
+          })
+      
+      .catch(function (error) {
+        console.log(`Ruh roh! An error has occurred`, error);
+      });
+  
+
 
 
   function processData(tracts) {
@@ -104,6 +122,23 @@
 
   }; //end processData
 
+  function drawAnotherLayer(data) {
+    L.geoJson(data, {
+      style: function (feature) {
+        return {
+          color: "#eeeeee",
+          weight: 3,
+          fillOpacity: 0,
+          // This property allows us control interactivity of layer
+          interactive: false,
+          zIndex: 400,
+        };
+      },
+
+    }).addTo(map);
+  }
+
+
 
 
 
@@ -112,10 +147,11 @@
     const dataLayer = L.geoJson(tracts, {
       style: function (feature) {
         return {
-          color: "#20282e",
-          weight: .5,
+          color: "#eeeeee",
+          weight: .2,
           fillOpacity: .5,
           fillColor: "#1f78b4",
+          zIndex: 1000,
         };
       },
       // add hover/touch functionality to each feature layer
@@ -124,8 +160,8 @@
         layer.on("mouseover", function () {
           console.log("mouseover") // change the stroke color
           layer.setStyle({
-              color: "#0a0a0a",
-              weight: 3,
+              color: "#262626",
+              weight: 1.5,
             })
             .bringToFront();
         });
@@ -134,7 +170,7 @@
         layer.on("mouseout", function () {
           // reset the layer style to its original stroke color
           layer.setStyle({
-            color: "#20282e",
+            color: "#eeeeee",
             weight: .05,
           });
         });
@@ -347,6 +383,7 @@ slider.addEventListener("input", function (e) {
       // Add all points into a heat layer
       var heat = L.heatLayer(data, {
         radius: 25
+        
       })
 
       // Add the heatlayer to the map
