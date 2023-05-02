@@ -10,7 +10,7 @@
   });
   L.control.zoom({
     position: 'topright'
-}).addTo(map);
+  }).addTo(map);
 
   // mapbox API access Token
   var accessToken = "pk.eyJ1IjoicmwtbWFydGVucyIsImEiOiJjbDQzNTY0d2YwNG5iM2N1aHYxcGJ1djcwIn0.tAxFsgNvT-dK0JF1vextnQ";
@@ -34,11 +34,11 @@
     PCT_WHITE_2010: ["Percent white in 2010"],
   };
 
-/*  var mapLayers = {
-  "heatmap": heatmap,
- } 
+  /*  var mapLayers = {
+    "heatmap": heatmap,
+   } 
 
- L.control.layers(null, mapLayers, { collapsed:false }).addTo(map); */
+   L.control.layers(null, mapLayers, { collapsed:false }).addTo(map); */
 
   //add charlotte data
   fetch("data/charlotte_tracts.geojson")
@@ -52,19 +52,19 @@
       processData(tracts)
       //drawMap(data);
     });
-    fetch("data/council_district_outline.geojson")
+  fetch("data/council_district_outline.geojson")
 
-          .then(function (response) {
-            return response.json()
-          })
-          .then(function (data) {
-            drawAnotherLayer(data)
-          })
-      
-      .catch(function (error) {
-        console.log(`Ruh roh! An error has occurred`, error);
-      });
-  
+    .then(function (response) {
+      return response.json()
+    })
+    .then(function (data) {
+      drawAnotherLayer(data)
+    })
+
+    .catch(function (error) {
+      console.log(`Ruh roh! An error has occurred`, error);
+    });
+
 
 
 
@@ -145,10 +145,10 @@
         layer.on("mouseover", function () {
           console.log("mouseover") // change the stroke color
           layer.setStyle({
-              color: "#ffffff",
-              weight: 2,
-            })
-            //.bringToFront();
+            color: "#ffffff",
+            weight: 2,
+          })
+          //.bringToFront();
         });
 
         // on mousing off layer
@@ -242,45 +242,45 @@
   } // end drawLegend
 
 
-  function createSliderUI(dataLayer, colorize){
- // create Leaflet control for the slider
- const sliderControl = L.control({
-  position: "topleft",
+  function createSliderUI(dataLayer, colorize) {
+    // create Leaflet control for the slider
+    const sliderControl = L.control({
+      position: "topleft",
 
-});
+    });
 
-// when added to the map
-sliderControl.onAdd = function (map) {
-  // select an existing DOM element with an id of "ui-controls"
-  const slider = L.DomUtil.get("ui-controls");
+    // when added to the map
+    sliderControl.onAdd = function (map) {
+      // select an existing DOM element with an id of "ui-controls"
+      const slider = L.DomUtil.get("ui-controls");
 
-  // disable scrolling of map while using controls
-  L.DomEvent.disableScrollPropagation(slider);
+      // disable scrolling of map while using controls
+      L.DomEvent.disableScrollPropagation(slider);
 
-  // disable click events while using controls
-  L.DomEvent.disableClickPropagation(slider);
+      // disable click events while using controls
+      L.DomEvent.disableClickPropagation(slider);
 
-  // return the slider from the onAdd method
-  return slider;
-};
+      // return the slider from the onAdd method
+      return slider;
+    };
 
-// add the control to the map
-sliderControl.addTo(map);
-// select the form element
-const slider = document.querySelector(".year-slider");
+    // add the control to the map
+    sliderControl.addTo(map);
+    // select the form element
+    const slider = document.querySelector(".year-slider");
 
-// listen for changes on input element
-slider.addEventListener("input", function (e) {
-  // get the value of the selected option
-  const currentYear = "PCT_WHITE_"+e.target.value;
-  // update the map with current timestamp
-  updateMap(dataLayer, colorize, currentYear);
-  // update timestamp in legend heading
-  document.querySelector(".legend h3 span").innerHTML = e.target.value; 
-});
+    // listen for changes on input element
+    slider.addEventListener("input", function (e) {
+      // get the value of the selected option
+      const currentYear = "PCT_WHITE_" + e.target.value;
+      // update the map with current timestamp
+      updateMap(dataLayer, colorize, currentYear);
+      // update timestamp in legend heading
+      document.querySelector(".legend h3 span").innerHTML = e.target.value;
+    });
 
 
-  }//end createSliderUI
+  } //end createSliderUI
 
 
 
@@ -331,49 +331,51 @@ slider.addEventListener("input", function (e) {
     }
   } //end updateLegend
 
-
-
- /*  var layerControl = L.control.layers(null, {
+  /*  var layerControl = L.control.layers(null, {
     collaped: false, position: 'bottomright'
   }).addTo(map);
 
 var heat = "(...)" */
 
-     //create heatmap
-$.get('./data/charlotte_pears_short_latlon.csv', function (csvString) {
+  //create heatmap
+  $.get('./data/charlotte_pears_short_latlon.csv', function (csvString) {
 
-      // Use PapaParse to transform file into arrays
-      var data = Papa.parse(csvString.trim()).data.filter(
-        function (row) {
-          return row.length === 2
-        }
-      ).map(function (a) {
-        return [parseFloat(a[0]), parseFloat(a[1])]
-      })
+    // Use PapaParse to transform file into arrays
+    var data = Papa.parse(csvString.trim()).data.filter(
+      function (row) {
+        return row.length === 2
+      }
+    ).map(function (a) {
+      return [parseFloat(a[0]), parseFloat(a[1])]
+    })
 
-      //the above code that uses Jquery and papaParse was modified and borrowed from a leaflet heatmap tutorial after several failed attempts using this and other heatmap API's https://github.com/HandsOnDataViz/leaflet-heatmap
+    //the above code that uses Jquery and papaParse was modified and borrowed from a leaflet heatmap tutorial after several failed attempts using this and other heatmap API's https://github.com/HandsOnDataViz/leaflet-heatmap
 
-      // Add all points into a heat layer
-      var heat = L.heatLayer(data, {
-        radius: 20,
-        gradient: {0.4: 'lightgreen', 0.65: 'lime', 1: 'darkgreen'},
-       
-      })
-    
-      // Add the heatlayer to the map
-      heat.addTo(map);
-      //layerControl.addOverlay(heat,"pear density");
+    // Add all points into a heat layer
+    var heat = L.heatLayer(data, {
+      radius: 20,
+      gradient: {
+        0.4: 'lightgreen',
+        0.65: 'lime',
+        1: 'darkgreen'
+      },
 
-    });//end getCSV
+    })
+
+    // Add the heatlayer to the map
+    heat.addTo(map);
+    //layerControl.addOverlay(heat,"pear density");
+
+  }); //end getCSV
 
 
-   
+
 
   /*   var sourcesLayers = {
       "<b style='color: red '> Heat Map</b>": heat,
     }    */
-  
-   
+
+
 
 
 

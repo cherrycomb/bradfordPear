@@ -34,7 +34,7 @@ h3 {
   align-items: center;
 }
 
-h4 { 
+h4 {
   color: #262626;
   font-weight: 700;
   font-size: .6rem;
@@ -107,11 +107,11 @@ a:hover {
   height: 20px;
   float: left;
   margin-right: 10px;
-  
+
 }
 
-#content{
-background: #f5f1e5
+#content {
+  background: #f5f1e5
 }
 
 
@@ -146,8 +146,6 @@ label {
 
 
 
-
-
 .legend-large,
 .legend-small {
   border-radius: 50%;
@@ -172,8 +170,10 @@ hr.large {
   margin-top: 8px;
 }
 
-table, th, td {
-  border:.5px solid #262626;
+table,
+th,
+td {
+  border: .5px solid #262626;
   /* border-collapse: collapse; */
 }
 
