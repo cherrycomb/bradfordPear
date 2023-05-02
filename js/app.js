@@ -28,11 +28,7 @@
   // mapped attribute
   var attributeValue = "PCT_WHITE_1990";
 
-  const labels = {
-    PCT_WHITE_1990: ["Percent white in 1990"],
-    PCT_WHITE_2000: ["Percent white in 2000"],
-    PCT_WHITE_2010: ["Percent white in 2010"],
-  };
+ 
 
   /*  var mapLayers = {
     "heatmap": heatmap,
@@ -114,7 +110,7 @@
     councilBounds = L.geoJson(data, {
       style: function (feature) {
         return {
-          color: "#756a60",
+          color: "#e7e7e7",
           weight: 3,
           fillOpacity: 0,
           // This property allows us control interactivity of layer
@@ -365,26 +361,16 @@
     })
 
     // Add the heatlayer to the map
-    heat.addTo(map);
+    heat.addTo(map).bringToFront();
     //layerControl.addOverlay(heat,"pear density");
 
   }); //end getCSV
 
    
-   
-
-
-
+  
   /*   var sourcesLayers = {
       "<b style='color: red '> Heat Map</b>": heat,
     }    */
-
-
-
-
-
-
-
 
 
 
