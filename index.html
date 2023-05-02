@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>MAP673 Assignment 06 API test</title>
+  <title>Bradford Pear Map 673 Final Project</title>
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
@@ -11,7 +11,9 @@
     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&family=Montserrat:wght@400;600&display=swap"
+    rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet" />
 
 
@@ -20,31 +22,85 @@
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div id="content" class="col-md-3 py-2 overflow-scroll">
+      <div id="content" class="col-md-3 py-2 overflow-scroll" style="height: 100vh;">
 
 
-        <h1>Charlotte Ornamental Pear Density</h1>
+        <h1>Ornamental Pear Tree Density in Charlotte, NC</h1>
+        This map shows the density of ornamental pears (P. Calleryana, most commonly known as the Bradford pear) alongside US Census demographic data on white racial homogeneity by tract. <br><br>
 
-        This map shows an example of using the <a href="https://github.com/Leaflet/Leaflet.heat"> leaflet.heat</a> API
-        for creating a density heatmap of point data (in this case, the 9,823 ornamental pear trees recorded in
-        Charlotte's Tree Canopy Inventory).
+        <img src="data/streetview.png"target="_blank">
+        <p>
+          <h4>An image from <a href="https://goo.gl/maps/hdCiSZk2yx9eFboP9" target="_blank"> Google Street View </a> shows a street
+            lined with ornamental pears along Foxbridge Road in Charlotte.</h4>
         </p>
+
+        <h3>Background </h3>
+
+        <img src="data/southernLiving1981.jpeg" target="_blank">
+        <p>
+          <h4>An image from Southern Living magazine (1981) shows a suburban home with a blooming Bradford pear tree in front.</h4>
+        </p>
+        These trees were incredibly popular nationally, and in the southern region, in particular, in the 70s-90s (see
+        table below). They were commonly planted en masse in newer subdivision developments. Charlotte, NC was a
+        paradigmatic example of southern sunbelt growth during this time period. Suburbanization was concomitatnt with
+        this economic growth, and was fueled, in part, by a white "suburban secession"(CITE). MORE
+
+        This map poses the question of whether white racial homogeneity in Charlotte's neighborhoods has any
+        relationship to the density of ornamental pears. The heatmap visualizes the 9,823 ornamental pear trees recorded
+        in Charlotte's official <a href="2003 and as recent as 2018" target="_blank">Tree Canopy Inventory</a> which represents city
+        tree records from the years 2003-2018.<br><br>
+
+
+        <table style="width:100%">
+          <tr>
+            <th>Year</th>
+            <th style="text-align: center">Southern Bradford Pear Ranking</th>
+            <th style="text-align: center">National Bradford Pear Ranking</th>
+          </tr>
+          <tr>
+            <td>1980</td>
+            <td style="text-align: center">2</td>
+            <td style="text-align: center">5</td>
+          </tr>
+          <tr>
+            <td>1983</td>
+            <td style="text-align: center">1</td>
+            <td style="text-align: center">3</td>
+          </tr>
+          <tr>
+            <td>1986</td>
+            <td style="text-align: center">1</td>
+            <td style="text-align: center">1</td>
+          </tr>
+        </table>
+        <p><h4> Information in this table sourced from <a href="https://www.fs.usda.gov/research/treesearch/4253" target="_blank">Nowak &
+            Sydnor, 1992</a>.</h4></p>
+
 
 
         <h2>About the data</h2>
         <p>
-          The data visualized in this map comes from Charlotte's <a href="https://pg-cloud.com/CharlotteNC/">official
-            urban canopy inventory</a>.
-        </p>
-        <p>Map authored by <a href="https://github.com/cherrycomb">RL Martens</a><br>
-          Link to data <a href="data/charlotte_pears.csv"> here</a>.</p>
+          Tree data visualized in this map comes from Charlotte's <a href="https://pg-cloud.com/CharlotteNC/" target="_blank">official
+            urban canopy inventory</a>.<br><br>
 
-        <img src="data/streetview.png">
-        <p>
-          <h3>An image from <a href="https://goo.gl/maps/hdCiSZk2yx9eFboP9"> Google Street View </a> shows a street
-            lined with ornamental pears at 2014 Foxbridge Road in Charlotte.</h3>
+          Decennial census data comes from the <a
+            href="https://data.charlottenc.gov/datasets/census-tracts-2010-historical-2/explore"target="_blank"> City of Charlotte Open
+            Data Portal</a>.<br><br>
+          Links to download data <a href="data/charlotte_pears.csv"target="_blank"> here</a> and <a
+            href="data/charlotte_tracts.geojson"target="_blank">here</a>.</p>
+        </p>
+
         </p>
         <p>
+          <h2>About the map</h2>
+          <p> This map uses <a href="https://leafletjs.com/"target="_blank">Leaflet.js</a>, <a
+            href="https://gka.github.io/chroma.js/"target="_blank">chroma.js</a> and the <a
+            href="https://github.com/Leaflet/Leaflet.heat"target="_blank"> leaflet.heat</a> plugin to create a density heatmap of
+          point data. The web page uses <a href="https://getbootstrap.com/"target="_blank">Bootstrap </a>for responsive design.
+        </p>
+          <p>Map authored by RL Martens</a> for NMP:673 at the University of Kentucky in May of 2023.<br><br>
+            Links: <a href="https://github.com/cherrycomb"target="_blank">Github</a> | <a href="https://cherrycomb.github.io"target="_blank">GIS Portfolio</a><br>
+
       </div>
 
 
@@ -57,14 +113,6 @@
             <input type="range" min="1990" , max="2010" , value="1990" , step="10" , class="year-slider" />
           </label>
         </div>
-      
-
-
-      
-
-       
-
-       
 
 
 

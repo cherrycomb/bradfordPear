@@ -101,7 +101,7 @@
     var breaks = chroma.limits(values, 'q', 5);
 
     // create color generator function
-    var colorize = chroma.scale(chroma.brewer.OrRd)
+    var colorize = chroma.scale(chroma.brewer.Greys)
       .classes(breaks)
       .mode('lab');
 
@@ -114,12 +114,12 @@
     L.geoJson(data, {
       style: function (feature) {
         return {
-          color: "#eeeeee",
+          color: "#ffffff",
           weight: 3,
           fillOpacity: 0,
           // This property allows us control interactivity of layer
           interactive: false,
-          //zIndex: 400,
+          zIndex: 300,
         };
       },
 
@@ -136,7 +136,7 @@
           weight: .2,
           fillOpacity: .4,
           fillColor: "#1f78b4",
-          //zIndex: 1000,
+          zIndex: 50,
         };
       },
       // add hover/touch functionality to each feature layer
@@ -145,8 +145,8 @@
         layer.on("mouseover", function () {
           console.log("mouseover") // change the stroke color
           layer.setStyle({
-              color: "#262626",
-              weight: 1.5,
+              color: "#ffffff",
+              weight: 1.8,
             })
             .bringToFront();
         });
@@ -219,7 +219,7 @@
     // select div and create legend title
     const legend = document.querySelector(".legend");
     //console.log(legend);
-    legend.innerHTML = "<h3> <span>1990</span>Percent white </h3><ul>";
+    legend.innerHTML = "<h3> <span>1990</span>Percent white</h3><ul>";
 
     // loop through the break values
     for (let i = 0; i < breaks.length - 1; i++) {
@@ -355,10 +355,11 @@ $.get('./data/charlotte_pears_short_latlon.csv', function (csvString) {
 
       // Add all points into a heat layer
       var heat = L.heatLayer(data, {
-        radius: 25
-        
+        radius: 20,
+        gradient: {0.4: 'lightgreen', 0.65: 'lime', 1: 'darkgreen'},
+       
       })
-
+    
       // Add the heatlayer to the map
       heat.addTo(map);
       //layerControl.addOverlay(heat,"pear density");
@@ -372,6 +373,8 @@ $.get('./data/charlotte_pears_short_latlon.csv', function (csvString) {
       "<b style='color: red '> Heat Map</b>": heat,
     }    */
   
+   
+
 
 
 
