@@ -111,15 +111,15 @@
   }; //end processData
 
   function drawAnotherLayer(data) {
-    L.geoJson(data, {
+    councilBounds = L.geoJson(data, {
       style: function (feature) {
         return {
-          color: "#ffffff",
+          color: "#756a60",
           weight: 3,
           fillOpacity: 0,
           // This property allows us control interactivity of layer
           interactive: false,
-          zIndex: 300,
+          zIndex: 400,
         };
       },
 
@@ -146,9 +146,9 @@
           console.log("mouseover") // change the stroke color
           layer.setStyle({
               color: "#ffffff",
-              weight: 1.8,
+              weight: 2,
             })
-            .bringToFront();
+            //.bringToFront();
         });
 
         // on mousing off layer
@@ -183,8 +183,8 @@
 
       })
       // assemble string sequence of info for tooltip (end line break with + operator)
-      let tooltipInfo = `<b>${props["NAMELSAD10"]}</b></br>
-      ${props[currentYear]}% white`;
+      let tooltipInfo = `<h5><b>${props["NAMELSAD10"]}</b></br>
+      ${props[currentYear]}% white</h5>`;
 
       // bind a tooltip to layer with county-specific information
       layer.bindTooltip(tooltipInfo, {
