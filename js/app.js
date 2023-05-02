@@ -124,6 +124,8 @@
       },
 
     }).addTo(map);
+    // Creating layer group
+  L.control.layers(councilBounds).addTo(map); 
   }
 
 
@@ -331,11 +333,11 @@
     }
   } //end updateLegend
 
-  /*  var layerControl = L.control.layers(null, {
+  /* var layerControl = L.control.layers(null, {
     collaped: false, position: 'bottomright'
-  }).addTo(map);
+  }).addTo(map);  */
 
-var heat = "(...)" */
+/* var heat = "(...)"  */
 
   //create heatmap
   $.get('./data/charlotte_pears_short_latlon.csv', function (csvString) {
@@ -368,6 +370,8 @@ var heat = "(...)" */
 
   }); //end getCSV
 
+   
+   
 
 
 
