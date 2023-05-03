@@ -3,13 +3,14 @@
 
   // initialize map, centered on Charlotte
   var map = L.map("map", {
-    zoom: 11,
+    zoom: 11.3,
     minZoom: 8,
-    center: [35.22, -80.84],
+    zoomSnap: .1,
+    center: [35.19, -80.80],
     zoomControl: false,
   });
   L.control.zoom({
-    position: 'topright'
+    position: 'bottomleft'
   }).addTo(map);
 
   // mapbox API access Token
@@ -28,7 +29,7 @@
   // mapped attribute
   var attributeValue = "PCT_WHITE_1990";
 
- 
+
 
   /*  var mapLayers = {
     "heatmap": heatmap,
@@ -63,7 +64,6 @@
 
 
 
-
   function processData(tracts) {
 
     console.log(tracts);
@@ -91,7 +91,7 @@
 
       }
     });
-    console.log("LOOK HERE!!!", values);
+    //console.log("LOOK HERE!!!", values);
 
     // create class breaks
     var breaks = chroma.limits(values, 'q', 5);
@@ -121,7 +121,7 @@
 
     }).addTo(map);
     // Creating layer group
-  L.control.layers(councilBounds).addTo(map); 
+    L.control.layers(councilBounds).addTo(map);
   }
 
 
@@ -132,7 +132,7 @@
         return {
           color: "#eeeeee",
           weight: .2,
-          fillOpacity: .4,
+          fillOpacity: .5,
           fillColor: "#1f78b4",
           zIndex: 50,
         };
@@ -180,9 +180,14 @@
         fillColor: colorize(Number(props[currentYear]))
 
       })
+
+      let percent = Number(props[currentYear] * 100).toFixed();
+
       // assemble string sequence of info for tooltip (end line break with + operator)
       let tooltipInfo = `<h5><b>${props["NAMELSAD10"]}</b></br>
-      ${props[currentYear]}% white</h5>`;
+       <center><b>${percent}%</b> white</h5>`;
+
+
 
       // bind a tooltip to layer with county-specific information
       layer.bindTooltip(tooltipInfo, {
@@ -198,7 +203,7 @@
 
     // create a Leaflet control for the legend
     const legendControl = L.control({
-      position: "bottomleft",
+      position: "topright",
     });
 
     // when the control is added to the map
@@ -227,8 +232,8 @@
 
       // create legend item
       const classRange = `<li><span style="background:${color}"></span>
-        ${breaks[i].toLocaleString()}% &mdash;
-        ${breaks[i + 1].toLocaleString()}% </li>`;
+        ${breaks[i].toFixed(2)*100}% &mdash;
+        ${breaks[i + 1].toFixed(2)*100}% </li>`;
 
       // append to legend unordered list item
       legend.innerHTML += classRange;
@@ -243,7 +248,7 @@
   function createSliderUI(dataLayer, colorize) {
     // create Leaflet control for the slider
     const sliderControl = L.control({
-      position: "topleft",
+      position: "topright",
 
     });
 
@@ -281,7 +286,6 @@
   } //end createSliderUI
 
 
-
   // Add legend to map
   function addLegend(breaks) {
     // check your console to verify the breaks array
@@ -289,7 +293,7 @@
 
     // create a new Leaflet control object, and position it top left
     const legendControl = L.control({
-      position: "bottomleft",
+      position: "bottomright",
     });
 
     // when the legend is added to the map
@@ -333,7 +337,7 @@
     collaped: false, position: 'bottomright'
   }).addTo(map);  */
 
-/* var heat = "(...)"  */
+  /* var heat = "(...)"  */
 
   //create heatmap
   $.get('./data/charlotte_pears_short_latlon.csv', function (csvString) {
@@ -351,7 +355,7 @@
 
     // Add all points into a heat layer
     var heat = L.heatLayer(data, {
-      radius: 20,
+      radius: 20, //20
       gradient: {
         0.4: 'lightgreen',
         0.65: 'lime',
@@ -366,12 +370,30 @@
 
   }); //end getCSV
 
-   
-  
+
+
   /*   var sourcesLayers = {
       "<b style='color: red '> Heat Map</b>": heat,
     }    */
 
+  function createButton() {
+
+    const buttonControl = L.control({
+      position: "topleft",
+
+    });
+
+    // when added to the map
+    buttonControl.onAdd = function (map) {
+      // select an existing DOM element with an id 
+      const button = L.DomUtil.get("infoButton");
+      //button.onClick(refreshPage)
+    }
+
+    const button = document.querySelector(".infoButton");
+
+
+  }
 
 
 })();

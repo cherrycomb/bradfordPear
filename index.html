@@ -20,6 +20,7 @@
 </head>
 
 <body>
+  <div id = "top"></div>
   <div class="container-fluid">
     <div class="row">
       <div id="content" class="col-md-3 py-2 overflow-scroll" style="height: 100vh;">
@@ -155,14 +156,22 @@
 
 
       <div class="col-md-9 p-0">
-        <div id="map"></div>
+        <div id="map">   
+        
+           <button id="infoButton"> <a href="#top">Back to Info</a></button>
+          </div>
+      
+   
+     <!--  <div class='.d-md-none .d-lg-block">  -->
         <div id="ui-controls">
           <label>
             <span class="min">1990</span>
             <span class="max">2010</span>
             <input type="range" min="1990" , max="2010" , value="1990" , step="10" , class="year-slider" />
           </label>
+         
         </div>
+        
 
 
 
