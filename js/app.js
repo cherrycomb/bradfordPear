@@ -365,7 +365,7 @@
     })
 
     // Add the heatlayer to the map
-    heat.addTo(map).bringToFront();
+    heat.addTo(map)
     //layerControl.addOverlay(heat,"pear density");
 
   }); //end getCSV
